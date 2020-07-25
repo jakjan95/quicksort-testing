@@ -1,6 +1,4 @@
 #include <gtest/gtest.h>
-#include <algorithm>
-#include <functional>
 #include <vector>
 
 #include "quicksort.hpp"
