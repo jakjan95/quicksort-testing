@@ -56,11 +56,10 @@ INSTANTIATE_TEST_SUITE_P(LongVectors,
 
 INSTANTIATE_TEST_SUITE_P(OutliersVectors,
                          QuickSortVectorTestFixture,
-                         ::testing::Values(VectorsPair{{99, 0, 0, 0, 0, 0, 0, 0, 97}, {0, 0, 0, 0, 0, 0,0, 97, 99}},
+                         ::testing::Values(VectorsPair{{99, 0, 0, 0, 0, 0, 0, 0, 97}, {0, 0, 0, 0, 0, 0, 0, 97, 99}},
                                            VectorsPair{{1, 1, 1, 1, 1, 1, 7, 1, 1, 1, 1}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7}},
-                                           VectorsPair{{1, 1, 1, 1, 0, 0, 0, -99}, {-99, 0, 0,0, 1, 1, 1, 1}},
+                                           VectorsPair{{1, 1, 1, 1, 0, 0, 0, -99}, {-99, 0, 0, 0, 1, 1, 1, 1}},
                                            VectorsPair{{99, 99, 99, -50, -25, 5, 9, 0}, {-50, -25, 0, 5, 9, 99, 99, 99}}));
-
 
 using DoubleVectorsPair = std::pair<std::vector<double>, std::vector<double>>;
 
@@ -88,3 +87,19 @@ INSTANTIATE_TEST_SUITE_P(NegativeDoubleVectors,
                                            DoubleVectorsPair{{-2.2, -1.1, -3.3}, {-3.3, -2.2, -1.1}},
                                            DoubleVectorsPair{{-3.3, -1.1, -2.2}, {-3.3, -2.2, -1.1}},
                                            DoubleVectorsPair{{-1.1}, {-1.1}}));
+
+TEST(StringVectorSorting, GivenStringVectorShouldBeEqualToExpectedAfterSorting) {
+    std::vector<std::string> input{"niqcur", "mogssc", "ulxymo", "qyqcrh", "wnzduz", "uenryd"};
+    std::vector<std::string> expected{"mogssc", "niqcur", "qyqcrh", "uenryd", "ulxymo", "wnzduz"};
+
+    quickSort(input);
+    ASSERT_EQ(input, expected);
+}
+
+TEST(StringVectorSorting, GivenReverseSortedStringVectorShouldBeEqualToExpectedAfterSorting) {
+    std::vector<std::string> input{"wnzduz", "ulxymo", "uenryd", "qyqcrh", "niqcur", "mogssc"};
+    std::vector<std::string> expected{"mogssc", "niqcur", "qyqcrh", "uenryd", "ulxymo", "wnzduz"};
+
+    quickSort(input);
+    ASSERT_EQ(input, expected);
+}
